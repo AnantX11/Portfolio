@@ -1,0 +1,6 @@
+{
+  "name": "aivéra",
+  "description": "An immersive, cinematic luxury portfolio built with glowing red accents, interactive bento grids, and an AI creative design director.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
