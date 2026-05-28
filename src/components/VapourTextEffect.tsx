@@ -41,6 +41,7 @@ type Particle = {
   angle: number;
   speed: number;
   shouldFadeQuickly?: boolean;
+  size: number;
 };
 
 type TextBoundaries = {
@@ -223,7 +224,12 @@ export default function VaporizeTextCycle({
             const opacity = Math.min(fadeOpacityRef.current, 1) * particle.originalAlpha;
             const color = particle.color.replace(/[\d.]+\)$/, `${opacity})`);
             ctx.fillStyle = color;
-            ctx.fillRect(particle.x / globalDpr, particle.y / globalDpr, 1, 1);
+            ctx.fillRect(
+              particle.x / globalDpr,
+              particle.y / globalDpr,
+              (particle.size || 1) / globalDpr,
+              (particle.size || 1) / globalDpr
+            );
           });
           ctx.restore();
 
@@ -561,10 +567,9 @@ const createParticles = (
   const data = imageData.data;
 
   // Calculate sampling rate based on DPR and density to maintain consistent particle density
-  const baseDPR = 3; // Base DPR we're optimizing for
-  const currentDPR = canvas.width / parseInt(canvas.style.width);
-  const baseSampleRate = Math.max(1, Math.round(currentDPR / baseDPR));
-  const sampleRate = Math.max(1, Math.round(baseSampleRate)); // Adjust sample rate by density
+  const currentDPR = canvas.width / (parseInt(canvas.style.width) || 1);
+  // Max step size to 3px-4px depending on resolution so total particles stay within 800-1500 limit
+  const sampleRate = Math.max(3, Math.round(currentDPR * 2)); 
 
   // Sample the text pixels and create particles
   for (let y = 0; y < canvas.height; y += sampleRate) {
@@ -588,6 +593,7 @@ const createParticles = (
           velocityY: 0,
           angle: 0,
           speed: 0,
+          size: sampleRate,
         };
         
         particles.push(particle);
@@ -699,7 +705,12 @@ const renderParticles = (ctx: CanvasRenderingContext2D, particles: Particle[], g
     if (particle.opacity > 0) {
       const color = particle.color.replace(/[\d.]+\)$/, `${particle.opacity})`);
       ctx.fillStyle = color;
-      ctx.fillRect(particle.x / globalDpr, particle.y / globalDpr, 1, 1);
+      ctx.fillRect(
+        particle.x / globalDpr,
+        particle.y / globalDpr,
+        (particle.size || 1) / globalDpr,
+        (particle.size || 1) / globalDpr
+      );
     }
   });
   

@@ -12,7 +12,6 @@ import Process from "./components/Process";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BackgroundPaths from "./components/BackgroundPaths";
-import VaporizeTextCycle, { Tag } from "./components/VapourTextEffect";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -182,33 +181,6 @@ export default function App() {
         >
           {/* Animated Background Paths Backdrop */}
           <BackgroundPaths />
-
-          {/* Vaporizing Text Background Backdrop */}
-          <div className="absolute inset-0 z-0 pointer-events-none flex items-end justify-end md:items-center md:justify-end opacity-25 sm:opacity-10">
-            <div className="w-full h-[250px] md:h-full max-w-7xl relative mx-auto px-6 md:px-12">
-              <div className="absolute right-6 bottom-16 md:right-12 md:bottom-24 w-[280px] sm:w-[500px] md:w-[900px] h-[130px] sm:h-[250px] md:h-[400px]">
-                <VaporizeTextCycle
-                  texts={["AIVÉRA", "DOMINANCE", "CREATIVITY", "PRECISION"]}
-                  font={{
-                    fontFamily: "Space Grotesk, Inter, sans-serif",
-                    fontSize: isMobile ? "45px" : "110px",
-                    fontWeight: 900
-                  }}
-                  color="rgb(210, 4, 45)"
-                  spread={4}
-                  density={4.5}
-                  animation={{
-                    vaporizeDuration: 2.5,
-                    fadeInDuration: 1.5,
-                    waitDuration: 1
-                  }}
-                  direction="right-to-left"
-                  alignment="right"
-                  tag={Tag.H2}
-                />
-              </div>
-            </div>
-          </div>
 
           {/* Pulsing Backlight atmospheric halo */}
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] [height:450px] bg-brand-crimson/15 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />

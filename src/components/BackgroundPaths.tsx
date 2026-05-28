@@ -5,16 +5,16 @@ interface FloatingPathsProps {
 }
 
 function FloatingPaths({ position }: FloatingPathsProps) {
-  const paths = Array.from({ length: 28 }, (_, i) => ({
+  const paths = Array.from({ length: 8 }, (_, i) => ({
     id: i,
-    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
-      380 - i * 5 * position
-    } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
-      152 - i * 5 * position
-    } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
-      684 - i * 5 * position
-    } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.03,
+    d: `M-${380 - i * 18 * position} -${189 + i * 22}C-${
+      380 - i * 18 * position
+    } -${189 + i * 22} -${312 - i * 18 * position} ${216 - i * 22} ${
+      152 - i * 18 * position
+    } ${343 - i * 22}C${616 - i * 18 * position} ${470 - i * 22} ${
+      684 - i * 18 * position
+    } ${875 - i * 22} ${684 - i * 18 * position} ${875 - i * 22}`,
+    width: 0.6 + i * 0.12,
   }));
 
   return (
@@ -32,7 +32,7 @@ function FloatingPaths({ position }: FloatingPathsProps) {
             d={path.d}
             stroke="currentColor"
             strokeWidth={path.width}
-            strokeOpacity={0.06 + path.id * 0.02}
+            strokeOpacity={0.08 + path.id * 0.04}
             initial={{ pathLength: 0.2, opacity: 0.3 }}
             animate={{
               pathLength: 1,
@@ -40,7 +40,7 @@ function FloatingPaths({ position }: FloatingPathsProps) {
               pathOffset: [0, 1, 0],
             }}
             transition={{
-              duration: 12 + Math.random() * 12,
+              duration: 15 + Math.random() * 15,
               repeat: Number.POSITIVE_INFINITY,
               ease: "linear",
             }}
