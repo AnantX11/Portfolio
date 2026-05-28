@@ -28,8 +28,41 @@ export default function About() {
             {/* Glow backing frame */}
             <div className="absolute -inset-1 bg-gradient-to-r from-brand-crimson to-brand-wine rounded-2xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity duration-500" />
             
+            {/* Crazy smooth background vector outline loops & glows */}
+            <div className="absolute inset-0 -m-8 pointer-events-none overflow-visible flex items-center justify-center z-0">
+              {/* Outer Slow Rotating Ring */}
+              <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+                className="absolute w-[115%] h-[115%] border border-brand-crimson/10 rounded-[2.5rem] opacity-65 group-hover:border-brand-crimson/25 transition-colors duration-500"
+              />
+              {/* Inner Counter-Rotating Dashed Star Ring */}
+              <motion.div 
+                animate={{ rotate: -360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute w-[108%] h-[108%] border border-dashed border-white/5 rounded-[2rem] opacity-50 group-hover:opacity-80 transition-opacity duration-500"
+              />
+              {/* Giant fluid ambient aura breathing behind */}
+              <motion.div 
+                animate={{ scale: [1, 1.04, 1], opacity: [0.12, 0.22, 0.12] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute w-[320px] h-[320px] bg-gradient-to-tr from-brand-crimson/15 via-transparent to-brand-wine/10 rounded-full blur-[60px]"
+              />
+            </div>
+            
             {/* Main picture framework */}
-            <div className="relative bg-dark-charcoal border border-white/10 rounded-2xl p-4 overflow-hidden shadow-2xl">
+            <motion.div 
+              animate={{ 
+                y: [0, -12, 4, -8, 0],
+                rotate: [0, 0.8, -0.6, 0.4, 0]
+              }}
+              transition={{ 
+                duration: 16, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="relative bg-dark-charcoal/90 border border-white/10 rounded-2xl p-4 overflow-hidden shadow-2xl z-10"
+            >
               <div className="absolute top-3 left-3 flex gap-1.5 z-10">
                 <span className="w-2.5 h-2.5 rounded-full bg-brand-crimson animate-pulse" />
                 <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
@@ -56,7 +89,7 @@ export default function About() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Column - Brand introduction */}
@@ -72,14 +105,13 @@ export default function About() {
               One vision, <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-crimson via-brand-light-red to-white">infinite precision.</span>
             </h2>
             
-            <p className="text-white/70 text-sm md:text-base leading-relaxed mb-6">
-              aivéra is a premium digital agency built for ambitious founders. We combine cutting-edge technology with obsessive design craft to create digital presences that convert, captivate, and dominate. Every project is a statement. Every pixel is intentional.
-            </p>
-
-            <div className="border-l-2 border-brand-crimson pl-4 py-1 mb-8 bg-brand-crimson/5 rounded-r-lg">
-              <span className="text-slate-300 italic text-sm block">
-                "Priyam founded aivéra with one conviction: most digital agencies deliver mediocrity dressed up as strategy. aivéra is different — every project receives obsessive attention, premium execution, and a relentless focus on results that matter."
-              </span>
+            <div className="space-y-4 mb-8 text-center">
+              <p className="text-white/90 text-sm md:text-base leading-relaxed font-semibold text-center">
+                Aivéra is a premium digital agency built for ambitious founders, blending cutting-edge technology with refined design craftsmanship to create digital experiences that captivate, convert, and command attention. Every detail is intentional, every project a statement.
+              </p>
+              <p className="text-white/90 text-sm md:text-base leading-relaxed font-semibold text-center">
+                Founded by Priyam, Aivéra is powered by a team of 12 skilled professionals united by precision, innovation, and an uncompromising creative standard — delivering modern, scalable solutions distinguished by sophistication and lasting impact.
+              </p>
             </div>
 
             {/* Micro Stats Grids */}

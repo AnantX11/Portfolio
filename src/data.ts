@@ -8,10 +8,11 @@ export const SERVICES_DATA: Service[] = [
     longDescription: "Blazing-fast, pixel-perfect websites built with Next.js and modern frameworks. Engineered for conversion.",
     iconName: "Code2",
     bullets: [
-      "Next.js and React Excellence",
       "Pixel-Perfect Engineering",
       "Engineered for Conversion",
-      "Blazing Fast Performance"
+      "Blazing Fast Performance",
+      "SEO Optimized",
+      "Mobile first design's"
     ]
   },
   {
@@ -34,10 +35,25 @@ export const SERVICES_DATA: Service[] = [
     longDescription: "Hyper-targeted campaigns using behavioral data. Your message, to the right person, at the right moment.",
     iconName: "Compass",
     bullets: [
+      "Meta Ads (i.e. Facebook,Insta)",
       "Behavioral Data Integration",
       "Hyper-Targeted Campaigning",
       "Perfect Moment Optimization",
       "Visual Performance Tracking"
+    ]
+  },
+  {
+    id: "content-creation",
+    title: "Content Creation",
+    shortDescription: "Cinematic, high-retention video production and custom digital storytelling crafted to convert cold visitors.",
+    longDescription: "Cinematic, high-retention video production and custom digital storytelling engineered to captivate and convert.",
+    iconName: "Film",
+    bullets: [
+      "Long-form Videos",
+      "Short-form Videos",
+      "Posts",
+      "Propper Story Telling",
+      "Using Premium Software's (i.e. Pr,Ps,Ae,Lr,Blender)"
     ]
   },
   {
@@ -112,6 +128,8 @@ export const SKILLS_DATA: Skill[] = [
 
   // Design
   { name: "Meta Ads", category: "design", iconName: "Figma", level: "Elite", percentage: 96 },
+  { name: "Insta Management", category: "design", iconName: "Instagram", level: "Elite", percentage: 94 },
+  { name: "Content Creation (Reels & Long Form Videos)", category: "design", iconName: "Film", level: "Elite", percentage: 91 },
   { name: "Outreaching Agents", category: "design", iconName: "Megaphone", level: "Advanced", percentage: 75 },
   { name: "Custom WhatsApp Payments Stores", category: "design", iconName: "MessageCircle", level: "Master", percentage: 88 },
 
@@ -188,4 +206,19 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
   }
 ];
 
-export const PROCESS_DATA: ProcessStep[] = [];
+export const PROCESS_DATA: ProcessStep[] = [
+  {
+    step: "01",
+    phase: "Scalability & Monitoring",
+    title: "Confirmed Growth",
+    description: "Monitoring core scale metrics, optimizing active ad funnels, and executing continuous performance layers to ensure exponential growth.",
+    duration: "Ongoing"
+  },
+  {
+    step: "02",
+    phase: "Guaranteed Delivery",
+    title: "Rigorous Quality Commitment",
+    description: "We design with client-side performance score requirements. Every deployment includes visual testing and dark contrast ratio validation.",
+    duration: "Uncompromised"
+  }
+];

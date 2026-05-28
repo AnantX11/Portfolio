@@ -110,9 +110,6 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
             className="fixed inset-0 z-45 bg-black/95 backdrop-blur-lg flex flex-col justify-center px-8 md:px-16"
           >
             <div className="flex flex-col gap-6 text-left max-w-md mx-auto w-full">
-              <span className="font-mono text-xs text-brand-crimson tracking-widest border-b border-brand-crimson/20 pb-2">
-                PROJECT NAVIGATION //
-              </span>
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.id}

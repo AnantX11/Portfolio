@@ -148,7 +148,7 @@ ${proposal.techStack.join(", ")}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Side: Creative briefing inputs (5 columns) */}
-          <div className="lg:col-span-5 bg-dark-charcoal border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl relative" id="brief-controls-card">
+          <div className="lg:col-span-5 bg-dark-charcoal border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl relative smooth-outline-box" id="brief-controls-card">
 
             <form onSubmit={handleGenerate} className="space-y-6">
               
@@ -325,7 +325,7 @@ ${proposal.techStack.join(", ")}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-dark-charcoal border border-white/10 rounded-3xl p-6 md:p-8 relative shadow-2xl text-left"
+                  className="bg-dark-charcoal border border-white/10 rounded-3xl p-6 md:p-8 relative shadow-2xl text-left smooth-outline-box"
                 >
                   {/* Glowing header banner background */}
                   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-brand-crimson to-transparent" />

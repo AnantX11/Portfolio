@@ -6,7 +6,7 @@ export default function Contact() {
   const contactDetails = [
     { label: "Email now", value: "theaiverashop@gmail.com", icon: Mail, href: "mailto:theaiverashop@gmail.com" },
     { label: "Call now", value: "+91 98836 59291", icon: Phone, href: "tel:+919883659291" },
-    { label: "Insta Now", value: "Send a Direct Message", icon: Instagram, href: "https://www.instagram.com/direct/t/18078353909176244/?__pwa=1" },
+    { label: "Insta Now", value: "@theaivera", icon: Instagram, href: "https://www.instagram.com/theaivera" },
   ];
 
   const socialLinks = [
@@ -63,6 +63,8 @@ export default function Contact() {
                     {item.href ? (
                       <a
                         href={item.href}
+                        target={item.href.startsWith("http") ? "_blank" : undefined}
+                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                         className="text-white hover:text-brand-crimson font-mono text-xs font-semibold tracking-wide transition-colors duration-300"
                       >
                         {item.value}

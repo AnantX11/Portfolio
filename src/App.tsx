@@ -11,13 +11,25 @@ import Skills from "./components/Skills";
 import Process from "./components/Process";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import BackgroundPaths from "./components/BackgroundPaths";
+import VaporizeTextCycle, { Tag } from "./components/VapourTextEffect";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [currentTime, setCurrentTime] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingStatus, setLoadingStatus] = useState("AIVÉRA COGNITIVE CORE BOOTING...");
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Responsive device check
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Premium Preloader Logic
   useEffect(() => {
@@ -29,22 +41,10 @@ export default function App() {
         clearInterval(interval);
         setTimeout(() => {
           setIsLoading(false);
-        }, 500);
+        }, 400);
       }
       setLoadingProgress(progress);
-      
-      if (progress < 25) {
-        setLoadingStatus("AIVÉRA SYSTEM BOOTING...");
-      } else if (progress < 50) {
-        setLoadingStatus("CRAFTING AESTHETIC DIMENSIONS...");
-      } else if (progress < 75) {
-        setLoadingStatus("COMPILING HIGH-FIDELITY LAYOUTS...");
-      } else if (progress < 95) {
-        setLoadingStatus("CALIBRATING DIGITAL DOMINANCE...");
-      } else {
-        setLoadingStatus("TRANSMISSION ESTABLISHED.");
-      }
-    }, 70);
+    }, 60);
     return () => clearInterval(interval);
   }, []);
 
@@ -113,68 +113,46 @@ export default function App() {
             exit={{ 
               opacity: 0,
               y: "-100%",
-              transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] } 
+              transition: { duration: 1.0, ease: [0.76, 0, 0.24, 1] } 
             }}
-            className="fixed inset-0 z-[100] flex flex-col justify-between p-8 md:p-12 bg-[#020204] select-none pointer-events-auto"
+            className="fixed inset-0 z-[100] flex flex-col justify-between p-8 md:p-12 bg-black select-none pointer-events-auto"
           >
-            {/* Ambient grid lines on sides */}
-            <div className="absolute inset-y-0 left-8 md:left-12 border-l border-white/5 pointer-events-none" />
-            <div className="absolute inset-y-0 right-8 md:right-12 border-r border-white/5 pointer-events-none" />
-            <div className="absolute inset-x-0 top-8 md:top-12 border-t border-white/5 pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-8 md:bottom-12 border-b border-white/5 pointer-events-none" />
-
-            {/* Top row */}
-            <div className="flex justify-between items-center z-10 font-mono text-[9px] text-white/30 tracking-[0.25em] uppercase">
-              <span>AIVÉRA // DIGITAL REVOLUTION</span>
-              <span className="text-brand-crimson">CORE_SYS.ACTIVATED</span>
+            {/* Top row - elegant tiny branding */}
+            <div className="flex justify-between items-center z-10 font-mono text-[8px] text-white/30 tracking-[0.3em] uppercase">
+              <span>AIVÉRA // DESIGN DIRECTORY</span>
+              <span>EST. 2026</span>
             </div>
 
-            {/* Main Center */}
+            {/* Main Center - pristine ultra-premium logo */}
             <div className="flex flex-col items-center justify-center text-center z-10 relative">
-              <div className="absolute w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-brand-crimson/5 rounded-full blur-[120px] pointer-events-none -translate-y-6" />
+              <div className="absolute w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-brand-crimson/5 rounded-full blur-[100px] pointer-events-none -translate-y-6" />
               
               <motion.div
-                initial={{ opacity: 0, scale: 0.94 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="flex items-center gap-3.5 mb-5"
+                initial={{ opacity: 0, scale: 0.98, letterSpacing: "0.2em" }}
+                animate={{ opacity: 1, scale: 1, letterSpacing: "0.6em" }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center gap-3.5 mb-8 pl-[0.6em]"
               >
-                <div className="w-2.5 h-2.5 bg-brand-crimson rounded-full animate-ping shrink-0" />
-                <h1 className="font-display text-4xl md:text-6xl font-black tracking-[0.4em] uppercase text-white pl-[0.4em]">
+                <h1 className="font-display text-4xl md:text-5xl font-light uppercase text-white tracking-widest selection:bg-brand-crimson">
                   aivéra
                 </h1>
               </motion.div>
 
-              <div className="h-6 mb-12">
-                <p className="font-mono text-[9px] tracking-[0.3em] text-brand-light-red uppercase">
-                  {loadingStatus}
-                </p>
-              </div>
-
-              {/* Progress Counters & Bar */}
-              <div className="w-64 max-w-full">
-                <div className="relative font-mono text-[5rem] md:text-[6.5rem] font-bold text-white/4 tracking-tighter leading-none select-none">
-                  {loadingProgress < 10 ? `0${loadingProgress}` : loadingProgress}%
-                </div>
-                
-                <div className="w-full h-[1px] bg-white/10 relative overflow-hidden mt-6">
+              {/* Minimal Line Progress Bar */}
+              <div className="w-32 max-w-full">
+                <div className="w-full h-[1px] bg-white/10 relative overflow-hidden">
                   <div 
-                    className="absolute left-0 top-0 h-full bg-brand-neon shadow-[0_0_8px_#ff003c]"
-                    style={{ width: `${loadingProgress}%`, transition: 'width 0.1s ease-out' }}
+                    className="absolute left-0 top-0 h-full bg-white transition-all duration-150 ease-out"
+                    style={{ width: `${loadingProgress}%` }}
                   />
-                </div>
-
-                <div className="flex justify-between items-center mt-3 font-mono text-[8px] text-white/20 tracking-widest uppercase">
-                  <span>FRAMEWORKS COMPILING</span>
-                  <span>RATE_{loadingProgress}%</span>
                 </div>
               </div>
             </div>
 
-            {/* Bottom row */}
-            <div className="flex justify-between items-end z-10 font-mono text-[9px] text-white/30 tracking-[0.2em] uppercase">
-              <span className="hidden sm:block">CURR_LOC_LAT_22.57°_N</span>
-              <span>{currentTime || "LOADING CLOCK..."}</span>
+            {/* Bottom row - fine print & real UTC clock */}
+            <div className="flex justify-between items-end z-10 font-mono text-[8px] text-white/30 tracking-[0.3em] uppercase animate-pulse-slow">
+              <span>PARIS // LONDON // NEW YORK</span>
+              <span>{currentTime || "UTC CLOCK"}</span>
             </div>
           </motion.div>
         )}
@@ -202,13 +180,43 @@ export default function App() {
           id="home"
           className="min-h-screen flex flex-col justify-center items-center pt-24 pb-12 relative overflow-hidden"
         >
+          {/* Animated Background Paths Backdrop */}
+          <BackgroundPaths />
+
+          {/* Vaporizing Text Background Backdrop */}
+          <div className="absolute inset-0 z-0 pointer-events-none flex items-end justify-end md:items-center md:justify-end opacity-25 sm:opacity-10">
+            <div className="w-full h-[250px] md:h-full max-w-7xl relative mx-auto px-6 md:px-12">
+              <div className="absolute right-6 bottom-16 md:right-12 md:bottom-24 w-[280px] sm:w-[500px] md:w-[900px] h-[130px] sm:h-[250px] md:h-[400px]">
+                <VaporizeTextCycle
+                  texts={["AIVÉRA", "DOMINANCE", "CREATIVITY", "PRECISION"]}
+                  font={{
+                    fontFamily: "Space Grotesk, Inter, sans-serif",
+                    fontSize: isMobile ? "45px" : "110px",
+                    fontWeight: 900
+                  }}
+                  color="rgb(210, 4, 45)"
+                  spread={4}
+                  density={4.5}
+                  animation={{
+                    vaporizeDuration: 2.5,
+                    fadeInDuration: 1.5,
+                    waitDuration: 1
+                  }}
+                  direction="right-to-left"
+                  alignment="right"
+                  tag={Tag.H2}
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Pulsing Backlight atmospheric halo */}
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] [height:450px] bg-brand-crimson/15 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
 
           <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex-1 flex flex-col justify-center relative">
             
             {/* Middle Main Copy Area */}
-            <div className="my-auto text-left max-w-5xl py-16 flex" id="hero-title-canvas">
+            <div className="my-auto text-left max-w-5xl pt-[38px] pb-16 flex" id="hero-title-canvas">
               <motion.div 
                 initial={{ opacity: 0, y: 15 }}
                 animate={!isLoading ? { opacity: 1, y: 0 } : { opacity: 0 }}
@@ -226,7 +234,7 @@ export default function App() {
                   className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] font-semibold text-brand-light-red mb-8 uppercase"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  Premium Digital Agency
+                  Mock Your Limits!
                 </motion.span>
 
                 <motion.h1 
@@ -245,7 +253,7 @@ export default function App() {
                   transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="text-white/70 font-sans text-sm md:text-base max-w-2xl leading-relaxed mb-10"
                 >
-                  aivéra crafts ultra-premium web experiences, AI systems, and brand narratives for founders who refuse to be ordinary. We don't build websites — we build empires.
+                  aivéra crafts high-performance web platforms, intelligent AI chatbots, custom workflows, hyper-targeted ad campaigns, and high-retention video content designed for absolute conversion.
                 </motion.p>
 
                 {/* Action Coordinates CTA group */}

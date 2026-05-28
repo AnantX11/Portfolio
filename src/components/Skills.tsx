@@ -20,6 +20,7 @@ import {
   Figma,
   Megaphone,
   Users,
+  Instagram,
 } from "lucide-react";
 
 export default function Skills() {
@@ -52,6 +53,7 @@ export default function Skills() {
       case "Layers":
         return <Layers className="w-4 h-4" />;
       case "Film":
+      case "Video":
         return <Video className="w-4 h-4" />;
       case "Hammer":
         return <Hammer className="w-4 h-4" />;
@@ -65,6 +67,8 @@ export default function Skills() {
         return <Figma className="w-4 h-4" />;
       case "Megaphone":
         return <Megaphone className="w-4 h-4" />;
+      case "Instagram":
+        return <Instagram className="w-4 h-4" />;
       case "Users":
         return <Users className="w-4 h-4" />;
       default:
@@ -78,7 +82,7 @@ export default function Skills() {
   });
 
   return (
-    <section id="skills" className="py-24 bg-[#050508] relative border-b border-white/5 overflow-hidden">
+    <section id="skills" className="pt-[47px] pb-[47px] pl-0 bg-[#050508] relative border-b border-white/5 overflow-hidden">
       {/* Background radial atmosphere orb */}
       <div className="absolute bottom-0 right-1/10 w-[300px] h-[300px] bg-brand-wine/10 rounded-full blur-[100px] pointer-events-none" />
 
@@ -93,7 +97,7 @@ export default function Skills() {
         >
           <div>
             <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              Our professional <span className="text-glow-red text-brand-light-red">technological engines.</span>
+              Our professional <span className="text-glow-red text-brand-light-red">expertise.</span>
             </h2>
           </div>
 
@@ -118,7 +122,7 @@ export default function Skills() {
         {/* Skills Grid */}
         <motion.div 
           layout 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" 
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 xs:gap-4 sm:gap-6" 
           id="skills-grid-canvas"
         >
           <AnimatePresence mode="popLayout">
@@ -133,28 +137,31 @@ export default function Skills() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="p-5 rounded-2xl bg-dark-charcoal border border-white/10 relative overflow-hidden group hover:border-brand-crimson/50 hover:-translate-y-1 transition-all duration-350 shadow-xl"
+                  className="aspect-square p-4 sm:p-5 rounded-2xl bg-dark-charcoal border border-white/10 relative overflow-hidden group hover:border-brand-crimson/50 hover:-translate-y-1 transition-all duration-350 shadow-xl flex flex-col justify-between smooth-outline-box"
                 >
                   {/* Micro glow on progress hovered */}
                   <div className="absolute top-0 right-0 w-24 h-24 bg-brand-crimson/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-2 rounded-lg bg-white/5 text-brand-crimson group-hover:bg-brand-crimson group-hover:text-white transition-all duration-350">
-                        {getSkillIcon(skill.iconName)}
-                      </div>
-                      <h3 className="font-display text-sm font-bold text-white tracking-wide">
-                        {skill.name}
-                      </h3>
+                  {/* Top row: Icon and Level */}
+                  <div className="flex items-center justify-between w-full mb-1">
+                    <div className="p-2 rounded-lg bg-white/5 text-brand-crimson group-hover:bg-brand-crimson group-hover:text-white transition-all duration-350">
+                      {getSkillIcon(skill.iconName)}
                     </div>
-                    <span className="font-mono text-xs text-brand-light-red font-semibold bg-brand-crimson/10 px-2 py-0.5 rounded">
+                    <span className="font-mono text-[10px] sm:text-xs text-brand-light-red font-semibold bg-brand-crimson/10 px-2 py-0.5 rounded tracking-wide">
                       {skill.level}
                     </span>
                   </div>
 
-                  {/* Progress bar container */}
-                  <div className="mt-4">
-                    <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                  {/* Mid section: Title, centered or weighted */}
+                  <div className="flex-grow flex flex-col justify-center my-2">
+                    <h3 className="font-display text-xs sm:text-sm md:text-base font-bold text-white tracking-wide leading-snug line-clamp-3">
+                      {skill.name}
+                    </h3>
+                  </div>
+
+                  {/* Bottom section: Progress rate & line */}
+                  <div className="w-full">
+                    <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.percentage}%` }}
@@ -163,8 +170,8 @@ export default function Skills() {
                         className="h-full bg-gradient-to-r from-brand-wine via-brand-crimson to-brand-light-red rounded-full shadow-[0_0_8px_rgba(255,0,60,0.5)]"
                       />
                     </div>
-                    <div className="flex justify-between items-center mt-2.5 font-mono text-[9px] text-white/40 uppercase tracking-widest">
-                      <span>CAPABILITY RATE</span>
+                    <div className="flex justify-between items-center mt-2 font-mono text-[9px] sm:text-[10px] text-white/40 uppercase tracking-widest">
+                      <span>CAPABILITY</span>
                       <span className="text-slate-300 font-semibold">{skill.percentage}%</span>
                     </div>
                   </div>

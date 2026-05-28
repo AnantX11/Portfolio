@@ -1,5 +1,5 @@
 import { SERVICES_DATA } from "../data";
-import { Framer, Code2, Compass, Zap, Cpu, HelpCircle, Sparkles, User, Check } from "lucide-react";
+import { Framer, Code2, Compass, Zap, Cpu, HelpCircle, Sparkles, User, Check, Film } from "lucide-react";
 import { motion } from "motion/react";
 
 export default function Services() {
@@ -19,6 +19,8 @@ export default function Services() {
         return <Sparkles className="w-6 h-6" />;
       case "User":
         return <User className="w-6 h-6" />;
+      case "Film":
+        return <Film className="w-6 h-6" />;
       default:
         return <HelpCircle className="w-6 h-6" />;
     }
@@ -48,7 +50,7 @@ export default function Services() {
             Services that <span className="text-glow-red text-brand-light-red">dominate.</span>
           </h2>
           <p className="text-white/60 text-sm md:text-base">
-            Six core capabilities, one obsessive mission: make your brand impossible to ignore.
+            Five core capabilities, one obsessive mission: make your brand impossible to ignore.
           </p>
         </motion.div>
 
@@ -62,42 +64,47 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-[#0a0a0f] border border-white/5 hover:border-brand-crimson/40 hover:shadow-[0_0_30px_rgba(210,4,45,0.15)] rounded-2xl p-8 transition-all duration-500 relative group overflow-hidden flex flex-col justify-between"
+              className="group relative bg-gradient-to-b from-white/10 to-brand-crimson/10 hover:from-brand-crimson/30 hover:to-brand-crimson/10 p-px rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-brand-crimson/5 transition-all duration-300"
             >
-              {/* Internal ambient flare */}
-              <div className="absolute -bottom-20 -right-20 w-[150px] h-[150px] bg-brand-crimson/5 group-hover:bg-brand-crimson/10 rounded-full blur-[60px] pointer-events-none transition-all duration-500" />
-              
-              <div>
-                {/* Icon Box */}
-                <div className="p-3.5 bg-white/2 border border-white/10 text-white/70 group-hover:bg-brand-crimson group-hover:text-white group-hover:border-brand-crimson rounded-xl w-fit transition-all duration-300 mb-6">
-                  {getServiceIcon(service.iconName)}
+              <div className="bg-[#0a0a0f] rounded-[15px] p-8 transition-all duration-300 relative overflow-hidden flex flex-col justify-between min-h-[360px] h-full group-hover:-translate-y-0.5 border border-white/5">
+                {/* Internal ambient flare */}
+                <div className="absolute -bottom-20 -right-20 w-[150px] h-[150px] bg-brand-crimson/5 group-hover:bg-brand-crimson/10 rounded-full blur-[60px] pointer-events-none transition-all duration-500" />
+                
+                <div>
+                  {/* Icon Box */}
+                  <div className="p-3.5 bg-white/2 border border-white/10 text-white/70 group-hover:bg-brand-crimson group-hover:text-white group-hover:border-brand-crimson rounded-xl w-fit transition-all duration-300 mb-6">
+                    {getServiceIcon(service.iconName)}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display text-xl font-bold text-white tracking-wide mb-3 group-hover:text-brand-light-red transition-colors duration-300">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-white/60 leading-relaxed mb-8 font-sans">
+                    {service.shortDescription}
+                  </p>
                 </div>
 
-                {/* Title */}
-                <h3 className="font-display text-xl font-bold text-white tracking-wide mb-3 group-hover:text-brand-light-red transition-colors duration-300">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-white/60 leading-relaxed mb-8">
-                  {service.shortDescription}
-                </p>
-              </div>
-
-              {/* Specific Capabilities Tagged Bullets list */}
-              <div className="flex flex-col gap-2.5 mt-auto">
-                <div className="h-[1px] w-full bg-white/5 my-2" />
-                {service.bullets.map((bullet, k) => (
-                  <div 
-                    key={k} 
-                    className="flex gap-2.5 items-center text-left text-xs text-white/80"
-                  >
-                    <Check className="w-3.5 h-3.5 text-brand-crimson shrink-0" />
-                    <span className="font-mono text-[11px] text-white/70 group-hover:text-white/95 transition-colors duration-300">
-                      {bullet}
-                    </span>
-                  </div>
-                ))}
+                {/* Specific Capabilities Tagged Bullets list */}
+                <div className="flex flex-col gap-2.5 mt-auto">
+                  <div className="h-[1px] w-full bg-white/5 my-2" />
+                  {service.bullets.map((bullet, k) => (
+                    <div 
+                      key={k} 
+                      className="flex gap-3 items-center text-left text-xs text-white/80"
+                    >
+                      <span className="relative flex h-2 w-2 shrink-0 my-auto">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-light-red opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-crimson shadow-[0_0_8px_#d2042d]"></span>
+                      </span>
+                      <span className="font-mono text-[11px] text-white/70 group-hover:text-white/95 transition-colors duration-300">
+                        {bullet}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
