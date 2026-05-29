@@ -3,6 +3,7 @@ import path from "path";
 import dotenv from "dotenv";
 import { GoogleGenAI, Type } from "@google/genai";
 
+// Verified Production Deployment Checkpoint - Robust Full-Stack Server Configuration
 dotenv.config();
 
 const app = express();

@@ -1,11 +1,10 @@
 import React from "react";
-import { Mail, Phone, Instagram } from "lucide-react";
+import { Mail, Instagram } from "lucide-react";
 import { motion } from "motion/react";
 
 export default function Contact() {
   const contactDetails = [
     { label: "Email now", value: "theaiverashop@gmail.com", icon: Mail, href: "mailto:theaiverashop@gmail.com" },
-    { label: "Call now", value: "+91 98836 59291", icon: Phone, href: "tel:+919883659291" },
     { label: "Insta Now", value: "@theaivera", icon: Instagram, href: "https://www.instagram.com/theaivera" },
   ];
 
